@@ -7,15 +7,15 @@ package sort;
 public class SelectionSort extends BaseSort{
 
 	public static void main(String[] args) {
-		test(new SelectionSort());
+		testTime(new SelectionSort());
 	}
 
-	public void sort(int[] nums) {
+	public int[] sort(int[] nums) {
 		// 数组长度
 		int len = nums.length;
 
 		if (len == 1)
-			return;
+			return nums;
 
 		// 当前索引
 		int i;
@@ -32,6 +32,8 @@ public class SelectionSort extends BaseSort{
 			}
 			swap(nums, start, minIndex);
 		}
+		
+		return nums;
 	}
 
 }
