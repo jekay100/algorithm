@@ -8,17 +8,19 @@ import java.util.Random;
  * 
  */
 public abstract class BaseSort {
+	private static final int default_len = 50000;
+
 	// 测试性能
-	public static void testTime(BaseSort baseSort) {
-		int[] nums = new int[50000];
-		for (int i = 0; i < nums.length; i++)
-			nums[i] = new Random().nextInt();
+	public static void testTime(BaseSort baseSort, int len) {
+		int[] nums = new int[len];
+		for (int i = 0; i < len; i++)
+			nums[i] = new Random().nextInt(len);
 
 		long curr = System.currentTimeMillis();
 		baseSort.sort(nums);
 		System.out.println("排序用时(未排序数组): " + (System.currentTimeMillis() - curr));
 
-		for (int i = 0; i < nums.length; i++)
+		for (int i = 0; i < len; i++)
 			nums[i] = i;
 
 		curr = System.currentTimeMillis();
@@ -26,12 +28,15 @@ public abstract class BaseSort {
 		System.out.println("排序用时(已排序数组): " + (System.currentTimeMillis() - curr));
 	}
 
+	public static void testTime(BaseSort baseSort) {
+		testTime(baseSort, default_len);
+	}
+
 	// 测试正确性
-	public static void testCorrect(BaseSort baseSort) {
-		int[] nums = new int[50000];
-		int len = nums.length;
+	public static void testCorrect(BaseSort baseSort, int len) {
+		int[] nums = new int[len];
 		for (int i = 0; i < len; i++)
-			nums[i] = new Random().nextInt();
+			nums[i] = new Random().nextInt(len);
 
 		nums = baseSort.sort(nums);
 
@@ -44,6 +49,10 @@ public abstract class BaseSort {
 		}
 
 		System.out.println("排序正确:" + correct);
+	}
+
+	public static void testCorrect(BaseSort baseSort) {
+		testCorrect(baseSort, default_len);
 	}
 
 	// 排序方法
