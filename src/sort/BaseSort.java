@@ -18,14 +18,21 @@ public abstract class BaseSort {
 
 		long curr = System.currentTimeMillis();
 		baseSort.sort(nums);
-		System.out.println("排序用时(未排序数组): " + (System.currentTimeMillis() - curr));
+		System.out.println("排序用时(未排序数组): " + (System.currentTimeMillis() - curr) + " , 排序正确:" + isCorrent(nums));
 
 		for (int i = 0; i < len; i++)
 			nums[i] = i;
 
 		curr = System.currentTimeMillis();
 		baseSort.sort(nums);
-		System.out.println("排序用时(已排序数组): " + (System.currentTimeMillis() - curr));
+		System.out.println("排序用时(已排序数组): " + (System.currentTimeMillis() - curr) + " , 排序正确:" + isCorrent(nums));
+	}
+
+	public static int[] ascArray(int len) {
+		int[] nums = new int[len];
+		for (int i = 0; i < len; i++)
+			nums[i] = i;
+		return nums;
 	}
 
 	public static void testTime(BaseSort baseSort) {
@@ -40,6 +47,11 @@ public abstract class BaseSort {
 
 		nums = baseSort.sort(nums);
 
+		System.out.println("排序正确:" + isCorrent(nums));
+	}
+
+	public static boolean isCorrent(int[] nums) {
+		int len = nums.length;
 		boolean correct = true;
 		for (int i = 0; i < len - 1; i++) {
 			if (nums[i + 1] < nums[i]) {
@@ -47,8 +59,7 @@ public abstract class BaseSort {
 				break;
 			}
 		}
-
-		System.out.println("排序正确:" + correct);
+		return correct;
 	}
 
 	public static void testCorrect(BaseSort baseSort) {
@@ -70,8 +81,11 @@ public abstract class BaseSort {
 	// 输出
 	public static void print(int[] nums) {
 		int len = nums.length;
-		for (int i = 0; i < len; i++)
+		for (int i = 0; i < len; i++) {
 			System.out.print(nums[i] + " ");
-		System.out.println();
+
+			if ((i + 1) % 100 == 0)
+				System.out.println();
+		}
 	}
 }
