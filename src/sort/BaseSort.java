@@ -17,14 +17,14 @@ public abstract class BaseSort {
 			nums[i] = new Random().nextInt(len);
 
 		long curr = System.currentTimeMillis();
-		baseSort.sort(nums);
+		nums = baseSort.sort(nums);
 		System.out.println("排序用时(未排序数组): " + (System.currentTimeMillis() - curr) + " , 排序正确:" + isCorrent(nums));
 
 		for (int i = 0; i < len; i++)
 			nums[i] = i;
 
 		curr = System.currentTimeMillis();
-		baseSort.sort(nums);
+		nums = baseSort.sort(nums);
 		System.out.println("排序用时(已排序数组): " + (System.currentTimeMillis() - curr) + " , 排序正确:" + isCorrent(nums));
 	}
 
@@ -32,6 +32,11 @@ public abstract class BaseSort {
 		int[] nums = new int[len];
 		for (int i = 0; i < len; i++)
 			nums[i] = i;
+		return nums;
+	}
+
+	public static int[] randomArray(int len) {
+		int[] nums = randomArray(len);
 		return nums;
 	}
 
